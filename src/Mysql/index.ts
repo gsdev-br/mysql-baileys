@@ -56,7 +56,7 @@ async function connection(config: MySQLConfig, force: boolean = false){
 	return conn
 }
 
-export const useMySQLAuthState = async(config: MySQLConfig): Promise<{ state: AuthenticationState, saveCreds: () => Promise<void>, clear: () => Promise<void>, removeCreds: () => Promise<void>, query: (sql: string, values: string[]) => Promise<sqlData> }> => {
+export const useMySQLAuthState = async(config: MySQLConfig): Promise<{ state: AuthenticationState, saveCreds: () => Promise<void>, clear: () => Promise<void>, removeCreds: () => Promise<void>, dropTable: () => Promise<void>, query: (sql: string, values: string[]) => Promise<sqlData> }> => {
 	const sqlConn = await connection(config)
 
 	const tableName = config.tableName || 'auth'
@@ -143,7 +143,7 @@ export const useMySQLAuthState = async(config: MySQLConfig): Promise<{ state: Au
 		removeCreds: async () => {
 			await removeAll()
 		},
-		const dropTable = async () => {
+		dropTable: async () => {
   			await query(`DROP TABLE IF EXISTS ${tableName}`)
 		},
 		query: async (sql: string, values: string[]) => {
