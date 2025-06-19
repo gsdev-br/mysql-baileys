@@ -32,7 +32,7 @@ async function connection(config: MySQLConfig, force: boolean = false) {
         CREATE TABLE IF NOT EXISTS \`${config.tableName || 'auth'}\` (
           \`id\` VARCHAR(80) NOT NULL PRIMARY KEY,
           \`value\` JSON DEFAULT NULL
-        ) ENGINE=MyISAM;
+        ) ENGINE=InnoDB;
       `)
     }
   }
