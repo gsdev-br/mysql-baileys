@@ -143,6 +143,9 @@ export const useMySQLAuthState = async(config: MySQLConfig): Promise<{ state: Au
 		removeCreds: async () => {
 			await removeAll()
 		},
+		const dropTable = async () => {
+  			await query(`DROP TABLE IF EXISTS ${tableName}`)
+		},
 		query: async (sql: string, values: string[]) => {
 			return await query(sql, values)
 		}
